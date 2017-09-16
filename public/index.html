@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Message-Bored</title>
+  <link rel="stylesheet" href="./css/app.css">
+  <base href="/">
+</head>
+<body ng-app="myApp" >
+
+  <div>
+    <h2>NavBar</h2>
+    <br>
+    <a ng-href="/users">Users</a>
+    <br>
+    <a ng-href="/latest">Latest</a>
+    <br>
+    <a ng-href="/others">Others</a>
+    <br>
+    <a ng-href="/fdvdvdv">Wrong..</a>
+  </div>
+
+
+  <ng-view></ng-view>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js" type="text/javascript"></script>
+  <script src="./js/myApp.js" type="text/javascript"></script>
+  <script src="./js/usersControllers.js" type="text/javascript"></script>
+  <script src="./js/usersProvider.js" type="text/javascript"></script>
+  <script src="./js/userService.js" type="text/javascript"></script>
+</body>
+</html>

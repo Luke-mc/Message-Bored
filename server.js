@@ -9,7 +9,6 @@ const Message = db.Message;
 const Topics = db.Topics;
 
 
-
 app.use(bp.urlencoded());
 app.use(bp.json());
 
@@ -36,7 +35,6 @@ app.post("/users", (req, res) => {
         User.create({
           name: req.body.name,
         }).then((user) => {
-            console.log('USER:',user);
             res.json(user.dataValues);
             //res.end();
          })
@@ -91,6 +89,9 @@ app.post("/message", (req, res) => {
         });
     });
 
+app.get('*', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '/public')});
+});
 
 app.listen(PORT, () => {
   db.sequelize.sync();
