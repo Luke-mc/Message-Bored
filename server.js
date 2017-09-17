@@ -74,8 +74,22 @@ app.put("/topics/:id", (req,res) => {
   res.end();
 });
 
+app.get("/messages", (req,res) => {
+   Message.findAll()
+      .then(message => {
+        res.json(message);
+      });
+   });
 
-app.post("/message", (req, res) => {
+app.get("/messages", (req,res) => {
+   Message.findAll()
+      .then(message => {
+        res.json(message);
+      });
+   });
+
+
+app.post("/messages", (req, res) => {
         Message.create({
           body: req.body.body,
         }).then((message) => {

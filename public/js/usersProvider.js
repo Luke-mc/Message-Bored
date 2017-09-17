@@ -5,7 +5,7 @@ angular.module('myApp')
     this.$get = ['$http', function($http) {
       return {
         getUsers: function() {
-          return $http.get('/api/users')
+          return $http.get('http://localhost:8000/users')
           .then((users) => {
             console.log('PROVIDER:',users);
             return users.data;

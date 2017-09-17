@@ -2,17 +2,22 @@ angular.module('myApp')
 .service('userService', ['$http', function($http) {
   var users = [];
 
-  $http.get('/api/users')
-  .then((dbUsers) => {
-    console.log(dbUsers);
-    users = dbUsers;
+  $http.get('/users')
+    .then((dbUsers) => {
+      console.log(dbUsers);
+      users = dbUsers.data;
+      console.log('service;', users);
   });
+
+    function getUsers(){
+      return users;
+    }
 
 
   return {
-    users: users,
-    getUsers: function() { return user; },
-    getUser: function(index) { return users[index]; },
-    addUser: function(user) { users.push(user); }
+    getUsers: getUsers(),
+    // getUsers: function() { return users; },
+    // getUser: function(index) { return users[index]; },
+    // addUser: function(user) { users.push(user); }
   };
 }]);

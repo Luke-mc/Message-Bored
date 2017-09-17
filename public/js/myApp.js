@@ -4,7 +4,7 @@ angular.module('myApp')
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
       $routeProvider
       .when('/', {
-        templateUrl: 'index.html',
+        templateUrl: 'home.html',
         controller: 'myController'
       })
       .when('/users', {
@@ -13,7 +13,7 @@ angular.module('myApp')
       })
       .when('/latest', {
         templateUrl: 'latest.html',
-        controller: 'latestController'
+        controller: 'myController'
       })
        .when('/others', {
         templateUrl: 'other.html',

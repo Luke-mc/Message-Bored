@@ -1,9 +1,9 @@
 <div>
-   <h2 id= "users">Users</h2>
-   <div ng-repeat = "user in users">
+   <h2 id= "latest_messages">Latest Messages</h2>
+   <div ng-repeat = "message in messages | limitTo: -10 | orderBy:'time':true">
      <ul>
         <li>
-          <strong>User:</strong> {{user.name}}
+          <strong>User:</strong> {{message.body}}
         </li>
       </ul>
    </div>
