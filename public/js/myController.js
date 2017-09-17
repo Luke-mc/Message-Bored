@@ -12,7 +12,16 @@ angular.module('myApp')
             $scope.messages = messages;
       });
 
+
      $scope.log = localStorage.getItem('log');
+
+     // $scope.log = function() {
+     //  if($scope.log === 'true'){
+     //    return $scope.logOff();
+     //  }else{
+     //    $scope.logOff();
+     //  }
+     // };
 
      $scope.logOff = function () {
         localStorage.removeItem('log');
@@ -23,6 +32,21 @@ angular.module('myApp')
       localStorage.removeItem('log');
       localStorage.setItem('log', 'true');
      };
+
+
+    $scope.navLoad = function(){
+      if($scope.log === 'true'){
+         $scope.logged = 'Log Out';
+         $scope.register = null;
+      }else{
+       $scope.logged = 'Log On';
+      $scope.register = 'Register';
+     }
+
+    };
+
+
+
 
 
 

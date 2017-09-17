@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
    <h2 id= "latest_messages">Latest Messages</h2>
    <div ng-repeat = "message in messages | limitTo: -10 | orderBy:'time':true">
      <ul>
@@ -7,9 +7,19 @@
         </li>
       </ul>
    </div>
-
+ -->
    <!--  <input type="text" placeholder="Username" ng-model="tempBook.title">
    <button ng-click="add()">
       Add User
-   </button> -->
-</div>
+   </button>
+</div> -->
+
+<article class="message" ng-repeat = "message in messages | limitTo: -10 | orderBy:'time':true">
+  <div class="message-header">
+    <p> message</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body" >
+    {{message.body}}
+  </div>
+</article>

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Luke-mc/Message-Bored#readme",
   "dependencies": {
     "body-parser": "^1.18.1",
+    "bulma": "^0.5.2",
     "express": "^4.15.4",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",

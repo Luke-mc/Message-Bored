@@ -32,6 +32,7 @@ app.get("/users/:id", (req,res) => {
   });
 
 app.post("/users", (req, res) => {
+  console.log('APP-POST:',req.body);
         User.create({
           name: req.body.name,
         }).then((user) => {

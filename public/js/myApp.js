@@ -7,13 +7,17 @@ angular.module('myApp')
         templateUrl: 'home.html',
         controller: 'myController'
       })
-      .when('/users', {
+      .when('/user', {
         templateUrl: 'users.html',
         controller: 'usersController'
       })
       .when('/latest', {
         templateUrl: 'latest.html',
         controller: 'myController'
+      })
+      .when('/register', {
+        templateUrl: 'register.html',
+        controller: 'usersController'
       })
        .when('/others', {
         templateUrl: 'other.html',

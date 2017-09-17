@@ -12,5 +12,20 @@ angular.module('myApp')
         Users.getUsers()
         .then((users) => {
           $scope.users = users;
+      });
+      $scope.user = {
+        username:''
+      };
+      $scope.register = function(){
+        console.log('USER', $scope.user.username);
+        newUser ={
+          username: $scope.user.username
+        };
+        console.log('NEW USER', newUser);
+        Users.addUser(newUser)
+        .then(user => {
+          console.log('post success', user);
+          $scope.user.username = '';
         });
+      };
 }]);

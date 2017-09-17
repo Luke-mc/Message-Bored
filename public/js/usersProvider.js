@@ -10,7 +10,26 @@ angular.module('myApp')
             console.log('PROVIDER:',users);
             return users.data;
           });
+        },
+
+        addUser: function(data) {
+          console.log('POST:',data);
+          return  $http({
+                    method: 'POST',
+                    url: 'http://localhost:8000/users',
+                    data: data,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                  })
+          .then((user) => {
+            console.log('POST 2:',user);
+            return user.data;
+          });
         }
+
       };
     }];
+
+
 });
+
+  // $http.post('http://localhost:8000/users',data, config)

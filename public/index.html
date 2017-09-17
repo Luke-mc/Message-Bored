@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,14 +11,19 @@
 
   <div ng-controller="myController">
     <h2>NavBar</h2>
-    <br><div ng-repeat="topic in topics">{{topic.name}}</div>
-    <a ng-href="/users">Users</a>
-    <br>
-    <a ng-href="/latest">Latest</a>
-    <br>
-    <a ng-href="/others">Others</a>
-    <br>
-    <a ng-href="/fdvdvdv">Wrong..</a>
+      <div ng-init="navLoad()">
+          <a ng-href="/">Home</a>
+          <br>
+          <button ng-click="log()">{{logged}}</button>
+          <br>
+          <a ng-href="/register">{{register}}</a>
+          <br>
+          <a ng-href="/user">Users</a>
+          <br>
+          <a ng-href="/latest">Latest</a>
+          <br>
+          <br><div ng-repeat="topic in topics">{{topic.name}}</div>
+      </div>
   </div>
 
 
@@ -35,4 +40,43 @@
   <script src="/js/topicsProvider.js" type="text/javascript"></script>
   <script src="/js/messageProvider.js" type="text/javascript"></script>
 </body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
+    <base href="/">
+  </head>
+  <body ng-app="myApp">
+  <section class="section"  ng-controller="myController"  >
+    <div class="container" ng-init="navLoad()">
+      <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+        <ul>
+          <li><a ng-href="/#">Home</a></li>
+          <li><a ng-click="log()">{{logged}}</a></li>
+          <li><a ng-href="/#">{{register}}</a></li>
+          <li><a ng-href="/user">Users</a></li>
+          <li><a ng-href="/latest">Latest</a></li>
+          <li class="is-active"><a href="#" aria-current="page"></a></li>
+        </ul>
+      </nav>
+    </div>
+   <ng-view></ng-view>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js" type="text/javascript"></script>
+  <script src="/js/myApp.js" type="text/javascript"></script>
+  <script src="./js/myController.js" type="text/javascript"></script>
+  <script src="/js/usersControllers.js" type="text/javascript"></script>
+  <script src="/js/userService.js" type="text/javascript"></script>
+  <script src="/js/usersProvider.js" type="text/javascript"></script>
+  <script src="/js/topicsProvider.js" type="text/javascript"></script>
+  <script src="/js/messageProvider.js" type="text/javascript"></script>
+  </body>
 </html>
