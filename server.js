@@ -91,7 +91,7 @@ app.get("/messages", (req,res) => {
 
 app.post("/messages", (req, res) => {
         Message.create({
-          body: req.body.body,
+          body: req.body.body
         }).then((message) => {
             console.log('MESSAGE:',message);
             //res.json(user.dataValues);
