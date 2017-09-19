@@ -19,6 +19,10 @@ angular.module('myApp')
         templateUrl: 'register.html',
         controller: 'usersController'
       })
+      .when('/login', {
+        templateUrl: 'logIn.html',
+        controller: 'usersController'
+      })
        .when('/others', {
         templateUrl: 'other.html',
         controller: 'othersController'

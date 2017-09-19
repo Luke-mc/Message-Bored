@@ -13,41 +13,23 @@ angular.module('myApp')
       });
 
 
-     $scope.log = localStorage.getItem('log');
+     $scope.current = localStorage.getItem('currentUser');
 
-     // $scope.log = function() {
-     //  if($scope.log === 'true'){
-     //    return $scope.logOff();
-     //  }else{
-     //    $scope.logOff();
-     //  }
-     // };
+     $scope.log = localStorage.getItem('log');
 
      $scope.logOff = function () {
         localStorage.removeItem('log');
         localStorage.setItem('log', 'false');
+        localStorage.removeItem('currentUser');
+        window.location.reload();
+        window.location.href = 'http://localhost:8000/';
       };
 
      $scope.logOn = function (){
       localStorage.removeItem('log');
       localStorage.setItem('log', 'true');
+      // window.location.reload();
+      // window.location.href = 'http://localhost:8000/';
      };
-
-
-    $scope.navLoad = function(){
-      if($scope.log === 'true'){
-         $scope.logged = 'Log Out';
-         $scope.register = null;
-      }else{
-       $scope.logged = 'Log On';
-      $scope.register = 'Register';
-     }
-
-    };
-
-
-
-
-
 
 }]);

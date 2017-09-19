@@ -48,25 +48,61 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>Message Bored</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
     <base href="/">
   </head>
   <body ng-app="myApp">
-  <section class="section"  ng-controller="myController"  >
-    <div class="container" ng-init="navLoad()">
-      <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+  <section class="section"  ng-controller="myController">
+  <section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Message Bored
+      </h1>
+      <h2 class="subtitle" ng-if="current">
+        Logged In as {{current}}
+      </h2>
+    </div>
+  </div>
+</section>
+<nav class="breadcrumb is-centered">
+<div class= "container">
+  <div ng-switch="{{log}}">
+    <div ng-switch-when="true" >
+      <ul>
+        <li><a ng-href="/#">Home</a></li>
+        <li><a ng-click="logOff()">Log Off</a></li>
+        <li><a ng-href="/user">Users</a></li>
+        <li><a ng-href="/latest">Latest</a></li>
+      </ul>
+     </div>
+     <div ng-switch-default>
         <ul>
           <li><a ng-href="/#">Home</a></li>
-          <li><a ng-click="log()">{{logged}}</a></li>
-          <li><a ng-href="/#">{{register}}</a></li>
+          <li><a ng-click="logOn()" ng-href="/login">Log On</a></li>
+          <li><a ng-href="/register">Register</a></li>
           <li><a ng-href="/user">Users</a></li>
           <li><a ng-href="/latest">Latest</a></li>
-          <li class="is-active"><a href="#" aria-current="page"></a></li>
         </ul>
-      </nav>
-    </div>
+     </div>
+   </div>
+</div>
+</nav>
+<nav class="breadcrumb is-centered">
+  <div class= "container">
+      <ul>
+        <li ng-repeat="topic in topics">
+         {{topic.name}}
+        </li>
+      </ul>
+  </div>
+</nav>
+
+
+
+
    <ng-view></ng-view>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" type="text/javascript"></script>
@@ -80,3 +116,7 @@
   <script src="/js/messageProvider.js" type="text/javascript"></script>
   </body>
 </html>
+
+
+
+
