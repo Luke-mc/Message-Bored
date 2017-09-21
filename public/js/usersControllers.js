@@ -1,10 +1,3 @@
-// angular.module('myApp')
-//     .controller('usersController', ['$scope' , 'userService', function($scope, userService) {
-//       $scope.users = userService;
-//     }]);
-
-
-
 
 angular.module('myApp')
   .controller('usersController', ['$scope' , 'Users','$filter', function($scope, Users,$filter) {
@@ -17,14 +10,11 @@ angular.module('myApp')
         username:''
       };
       $scope.register = function(){
-        console.log('USER', $scope.user.username);
         newUser ={
           username: $scope.user.username
         };
-        console.log('NEW USER', newUser);
         Users.addUser(newUser)
         .then(user => {
-          console.log('post success', user);
           $scope.user.username = '';
         });
       };
@@ -43,7 +33,6 @@ angular.module('myApp')
           localStorage.setItem('currentUser', currentUser);
           window.location.reload();
           window.location.href = 'http://localhost:8000/';
-          console.log($scope.current);
         }else{
           var wrongUsername = `Sorry, ${$scope.test} is not a registered User.`;
           window.alert(wrongUsername);

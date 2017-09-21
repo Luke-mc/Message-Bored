@@ -4,8 +4,8 @@ const app = express();
 const bp =require('body-parser');
 const PORT = process.env.PORT || 8000;
 const db = require('./models');
-const User = db.User;
-const Message = db.Message;
+const Users = db.Users;
+const Messages = db.Messages;
 const Topics = db.Topics;
 
 
@@ -15,14 +15,14 @@ app.use(bp.json());
 app.use(express.static("public"));
 
 app.get("/users", (req,res) => {
-   User.findAll()
+   Users.findAll()
       .then(user => {
         res.json(user);
       });
    });
 
 app.get("/users/:id", (req,res) => {
-    User.findById(parseInt(req.params.id))
+    Users.findById(parseInt(req.params.id))
       .then((user) => {
         res.json(user);
      })
@@ -32,9 +32,9 @@ app.get("/users/:id", (req,res) => {
   });
 
 app.post("/users", (req, res) => {
-  console.log('APP-POST:',req.body);
-        User.create({
-          name: req.body.name,
+  console.log('APP-POST:',  req.body);
+        Users.create({
+          name: req.body.username
         }).then((user) => {
             res.json(user.dataValues);
             //res.end();
@@ -53,8 +53,10 @@ app.get("/topics", (req,res) => {
    });
 
 app.post("/topics", (req, res) => {
+  console.log('ROUTE TOPIC:',req.body.created_by);
         Topics.create({
           name: req.body.name,
+          created_by: req.body.created_by
         }).then((topic) => {
             console.log('TOPIC:',topic);
             res.json(topic.dataValues);
@@ -76,14 +78,14 @@ app.put("/topics/:id", (req,res) => {
 });
 
 app.get("/messages", (req,res) => {
-   Message.findAll()
+   Messages.findAll()
       .then(message => {
         res.json(message);
       });
    });
 
 app.get("/messages", (req,res) => {
-   Message.findAll()
+   Messages.findAll()
       .then(message => {
         res.json(message);
       });
@@ -91,7 +93,7 @@ app.get("/messages", (req,res) => {
 
 
 app.post("/messages", (req, res) => {
-        Message.create({
+        Messages.create({
           body: req.body.body
         }).then((message) => {
             console.log('MESSAGE:',message);
@@ -110,5 +112,6 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   db.sequelize.sync();
+  //db.sequelize.sync({force:true});
   console.log(`Server running ${PORT}`);
 });

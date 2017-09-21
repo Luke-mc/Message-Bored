@@ -1,0 +1,24 @@
+<article class="message" ng-repeat = "message in messages | orderBy:'time':true">
+  <div class="message-header">
+    <p> message {{message.id}}</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body" >
+    {{message.body}}
+  </div>
+</article>
+
+<div class="field">
+  <label class="label">Message</label>
+  <div class="control">
+    <textarea class="textarea" placeholder="Textarea"></textarea>
+  </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-primary">Submit</button>
+  </div>
+  <div class="control">
+    <button class="button is-link">Cancel</button>
+  </div>

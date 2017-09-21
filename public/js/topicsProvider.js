@@ -10,7 +10,18 @@ angular.module('myApp')
             console.log('PROVIDER:',topics);
             return topics.data;
           });
+        },
+
+        addTopic: function(data) {
+          console.log('POST TOPIC:',  data);
+          return  $http.post('/topics', data)
+          .then((topic) => {
+            console.log('POST 2:',topic);
+            return topic.data;
+          });
         }
+
       };
     }];
+
 });

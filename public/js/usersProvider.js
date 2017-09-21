@@ -5,7 +5,7 @@ angular.module('myApp')
     this.$get = ['$http', function($http) {
       return {
         getUsers: function() {
-          return $http.get('http://localhost:8000/users')
+          return $http.get('/users')
           .then((users) => {
             console.log('PROVIDER:',users);
             return users.data;
@@ -13,13 +13,8 @@ angular.module('myApp')
         },
 
         addUser: function(data) {
-          console.log('POST:',data);
-          return  $http({
-                    method: 'POST',
-                    url: 'http://localhost:8000/users',
-                    data: data,
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                  })
+          console.log('POST:',  data);
+          return  $http.post('/users', data)
           .then((user) => {
             console.log('POST 2:',user);
             return user.data;

@@ -5,7 +5,7 @@ angular.module('myApp')
     this.$get = ['$http', function($http) {
       return {
         getMessages: function() {
-          return $http.get('http://localhost:8000/messages')
+          return $http.get('/messages')
           .then((messages) => {
             console.log('PROVIDER:',messages);
             return messages.data;

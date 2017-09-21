@@ -1,14 +1,45 @@
-module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    name: DataTypes.TEXT,
-  }, {
-    classMethods: {
-      associate: function(models) {
+// module.exports = function(sequelize, DataTypes) {
+//   var User = sequelize.define("User", {
+//     name: DataTypes.TEXT,
+//   }, {
+//     classMethods: {
+//       associate: function(models) {
 
-      }
-    }
+//       }
+//     }
+//   });
+
+//   return User;
+// };
+
+
+
+const sequelize = require("sequelize");
+const Topics = require("./Topics");
+const Messages = require("./Messages");
+
+module.exports = function(sequelize, DataTypes) {
+  var Users = sequelize.define("Users",
+  {
+    name: { type: DataTypes.STRING, allowNull: false, unique: true }
   });
 
-  return User;
-};
+  Users.associate = function(models) {
+    Users.hasMany(models.Topics,
+    {
+      foreignKey: {
+        name: "created_by",
+        allowNull: false
+      }
+    });
+    Users.hasMany(models.Messages,
+    {
+      foreignKey: {
+        name: "author_id",
+        allowNull: false
+      }
+    });
+  };
 
+  return Users;
+};
