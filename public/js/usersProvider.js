@@ -7,7 +7,7 @@ angular.module('myApp')
         getUsers: function() {
           return $http.get('/users')
           .then((users) => {
-            console.log('PROVIDER:',users);
+            console.log(users.data);
             return users.data;
           });
         },
@@ -17,6 +17,7 @@ angular.module('myApp')
           return  $http.post('/users', data)
           .then((user) => {
             console.log('POST 2:',user);
+            console.log('USERS:',user);
             return user.data;
           });
         }
@@ -26,5 +27,3 @@ angular.module('myApp')
 
 
 });
-
-  // $http.post('http://localhost:8000/users',data, config)

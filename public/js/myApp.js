@@ -23,6 +23,10 @@ angular.module('myApp')
         templateUrl: 'logIn.html',
         controller: 'usersController'
       })
+      .when('/topic/:id', {
+        templateUrl: 'topic_id.html',
+        controller: 'topicController'
+      })
       .when('/topic', {
         templateUrl: 'topic.html',
         controller: 'topicController'

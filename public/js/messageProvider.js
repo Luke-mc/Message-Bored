@@ -7,10 +7,20 @@ angular.module('myApp')
         getMessages: function() {
           return $http.get('/messages')
           .then((messages) => {
-            console.log('PROVIDER:',messages);
             return messages.data;
           });
+        },
+
+         addMessage: function(data) {
+          console.log('POST:',  data);
+          return  $http.post('/messages', data)
+          .then((message) => {
+            console.log('POST 2:',message);
+            console.log('messageS:',message);
+            return message.data;
+          });
         }
+
       };
     }];
 });

@@ -70,38 +70,36 @@
 <nav class="breadcrumb is-centered">
 <div class= "container">
   <div ng-switch="{{log}}">
-    <div ng-switch-when="true" >
-      <ul>
-        <li><a ng-href="/#">Home</a></li>
-        <li><a ng-click="logOff()">Log Off</a></li>
-        <li><a ng-href="/user">Users</a></li>
-        <li><a ng-href="/latest">Latest</a></li>
-      </ul>
-     </div>
-     <div ng-switch-default>
+     <div ng-switch-when="true" ng-controller="topicController" >
+       <ul>
+         <li><a ng-href="/#">Home</a></li>
+         <li><a ng-click="logOff()">Log Off</a></li>
+         <li><a ng-href="/user">Users</a></li>
+         <li><a ng-href="/latest">Latest</a></li>
+       </ul>
+       <nav class="breadcrumb is-centered">
+         <ul>
+            <li ng-repeat="topic in topics">
+               <a ng-href ="/topic" ng-click= 'bindThis(topic.id,topic.name)'>{{topic.name}}</a>
+            </li>
+            <li><a ng-href='/topic'>topic</a></li>
+          </ul>
+        </nav>
+        <input class="input is-small" type="text" placeholder="New Topic" ng-model="topic.topicname">
+        <button ng-click="addTopic()" >Add Topic</button>
+      </div>
+      <div ng-switch-default>
         <ul>
           <li><a ng-href="/#">Home</a></li>
-          <li><a ng-click="logOn()" ng-href="/login">Log On</a></li>
+          <li><a ng-href="/login">Log On</a></li>
           <li><a ng-href="/register">Register</a></li>
           <li><a ng-href="/user">Users</a></li>
           <li><a ng-href="/latest">Latest</a></li>
         </ul>
-     </div>
+       </div>
+      </div>
    </div>
-</div>
-</nav>
-<nav class="breadcrumb is-centered">
-  <div class= "container" ng-controller="topicController">
-      <ul>
-        <li ng-repeat="topic in topics">
-         {{topic.name}}
-        </li>
-        <li><a ng-href="/topic">topic</a></li>
-      </ul>
-      <input type="text" placeholder="New Topic" ng-model="topic.topicname">
-       <button ng-click="addTopic()">Add Topic</button>
-  </div>
-</nav>
+ </nav>
 
 
 

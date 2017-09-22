@@ -13,14 +13,16 @@ angular.module('myApp')
       });
 
 
-     $scope.current = localStorage.getItem('currentUser');
+     $scope.current = localStorage.getItem('user');
+
 
      $scope.log = localStorage.getItem('log');
 
      $scope.logOff = function () {
         localStorage.removeItem('log');
         localStorage.setItem('log', 'false');
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('user');
+        localStorage.removeItem('userId');
         window.location.reload();
         window.location.href = 'http://localhost:8000/';
       };
