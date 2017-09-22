@@ -94,7 +94,9 @@ app.get("/messages", (req,res) => {
 
 app.post("/messages", (req, res) => {
         Messages.create({
-          body: req.body.body
+          body: req.body.body,
+          topic_id: req.body.topic_id,
+          author_id: req.body.author_id,
         }).then((message) => {
             console.log('MESSAGE:',message);
             //res.json(user.dataValues);

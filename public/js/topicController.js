@@ -21,13 +21,28 @@ angular.module('myApp')
       };
 
       $scope.addMessage = function(){
+        var topic_id = parseInt(localStorage.getItem('topic_id'));
+        var author_id = parseInt(localStorage.getItem('userId'));
         newMessage ={
-          body: $scope.message.body
+          body: $scope.message.body,
+          topic_id: topic_id,
+          author_id: author_id,
         };
         Messages.addMessage(newMessage)
         .then(message => {
           console.log('REGISTER',message);
           $scope.message.body = '';
+        });
+        $route.reload();
+      };
+
+      $scope.nothing = [];
+
+      $scope.filter = function() {
+        return $scope.messages.filter(message => {
+            var result = message.topic_id === topicID;
+            console.log(result);
+          $scope.messages = result;
         });
       };
 
@@ -35,11 +50,12 @@ angular.module('myApp')
        $scope.bindThis = function(id, name) {
         console.log(id);
         localStorage.setItem('topic_name',name);
-        localStorage.setItem('id',id);
+        localStorage.setItem('topic_id',id);
         $route.reload();
       };
 
      $scope.topicName = localStorage.getItem('topic_name');
+     $scope.topicID= parseInt(localStorage.getItem('topic_id'));
 
 
       $scope.addTopic = function(){

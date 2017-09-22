@@ -1,9 +1,9 @@
 <h1 class="title is=large">{{topicName}}</h1>
 
 
-<article class="message" ng-repeat = "message in messages | orderBy:'time':true">
+<article ng-onload="filter()" class="message" ng-repeat = "message in messages | orderBy:'time':true | topicId: topicID ">
   <div class="message-header">
-    <p> message {{message.id}}</p>
+    <p> message {{message.topic_id}}</p>
     <button class="delete" aria-label="delete"></button>
   </div>
   <div class="message-body" >
@@ -14,13 +14,13 @@
 <div class="field">
   <label class="label">Message</label>
   <div class="control">
-    <textarea class="textarea" placeholder="Textarea"></textarea>
+    <textarea class="textarea" placeholder="Textarea" ng-model="message.body"></textarea>
   </div>
 </div>
 
 <div class="field is-grouped">
   <div class="control">
-    <button class="button is-primary">Submit</button>
+    <button class="button is-primary" ng-click="addMessage()">Submit</button>
   </div>
   <div class="control">
     <button class="button is-link">Cancel</button>
