@@ -1,14 +1,17 @@
 angular.module('myApp')
   .provider('Users', function() {
-    this.users = [];
+
 
     this.$get = ['$http', function($http) {
+       this.users = [];
       return {
         getUsers: function() {
           return $http.get('/users')
           .then((users) => {
-            console.log(users.data);
-            return users.data;
+
+              this.users =  users.data;
+              console.log('PROV;',this.users);
+              return users.data;
           });
         },
 
@@ -16,8 +19,6 @@ angular.module('myApp')
           console.log('POST:',  data);
           return  $http.post('/users', data)
           .then((user) => {
-            console.log('POST 2:',user);
-            console.log('USERS:',user);
             return user.data;
           });
         }

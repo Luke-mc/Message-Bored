@@ -5,5 +5,13 @@ angular.module('myApp')
         return message.topic_id === id;
       });
     };
+}])
+
+  .filter('authorId', [function() {
+    return function(users, id) {
+      return users.filter((user) => {
+        return user.author_id === id;
+      });
+    };
 }]);
 

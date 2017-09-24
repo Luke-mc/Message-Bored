@@ -1,10 +1,10 @@
-<h1 class="title is=large">{{topicName}}</h1>
+<h1 class="title is-large">{{topicName}}</h1>
 
 
-<article ng-onload="filter()" class="message" ng-repeat = "message in messages | orderBy:'time':true | topicId: topicID ">
+<article ng-onload="filter()" class="message is-info is-small"  ng-repeat = "message in messages | orderBy:'time':true | topicId: topicID ">
   <div class="message-header">
-    <p> message {{message.topic_id}}</p>
-    <button class="delete" aria-label="delete"></button>
+    <p> Posted by: {{message.User.name}}<br>{{message.createdAt| date: "EEEE, MMM d, y h:mm:ss a" }}</p>
+    <button class="delete" aria-label="delete" ng-click= "delete(message.id)"></button>
   </div>
   <div class="message-body" >
     {{message.body}}

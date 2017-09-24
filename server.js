@@ -46,7 +46,9 @@ app.post("/users", (req, res) => {
 
 
 app.get("/topics", (req,res) => {
-   Topics.findAll()
+   Topics.findAll({
+    include:[{model: Users}]
+     })
       .then(topic => {
         res.json(topic);
       });
@@ -59,7 +61,7 @@ app.post("/topics", (req, res) => {
           created_by: req.body.created_by
         }).then((topic) => {
             console.log('TOPIC:',topic);
-            res.json(topic.dataValues);
+            res.json(topic);
             //res.end();
          })
         .catch((err) => {
@@ -78,25 +80,33 @@ app.put("/topics/:id", (req,res) => {
 });
 
 app.get("/messages", (req,res) => {
-   Messages.findAll()
+   Messages.findAll({
+    include:[{model: Users},{model: Topics}]
+     })
       .then(message => {
         res.json(message);
       });
    });
 
-app.get("/messages", (req,res) => {
-   Messages.findAll()
-      .then(message => {
-        res.json(message);
-      });
-   });
-
+app.delete("/messages/:id", (req,res) => {
+  Messages.destroy({
+        where: {
+          id: parseInt(req.params.id)
+        }
+      }).then((data) => {
+          console.log('Deleted');
+          res.redirect("/");
+        }).catch((err) => {
+          console.log(err);
+        });
+});
 
 app.post("/messages", (req, res) => {
         Messages.create({
           body: req.body.body,
           topic_id: req.body.topic_id,
           author_id: req.body.author_id,
+          author_name: req.body.author_name
         }).then((message) => {
             console.log('MESSAGE:',message);
             //res.json(user.dataValues);

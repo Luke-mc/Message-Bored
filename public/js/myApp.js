@@ -13,7 +13,7 @@ angular.module('myApp')
       })
       .when('/latest', {
         templateUrl: 'latest.html',
-        controller: 'myController'
+        controller: 'topicController'
       })
       .when('/register', {
         templateUrl: 'register.html',

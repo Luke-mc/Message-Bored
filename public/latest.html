@@ -1,23 +1,7 @@
-<!-- <div>
-   <h2 id= "latest_messages">Latest Messages</h2>
-   <div ng-repeat = "message in messages | limitTo: -10 | orderBy:'time':true">
-     <ul>
-        <li>
-          <strong>User:</strong> {{message.body}}
-        </li>
-      </ul>
-   </div>
- -->
-   <!--  <input type="text" placeholder="Username" ng-model="tempBook.title">
-   <button ng-click="add()">
-      Add User
-   </button>
-</div> -->
-
 <article class="message" ng-repeat = "message in messages | limitTo: -10 | orderBy:'time':true">
   <div class="message-header">
-    <p> message</p>
-    <button class="delete" aria-label="delete"></button>
+    <p> Posted by: {{message.User.name}}<br>{{message.createdAt| date: " EEEE , MMM d, y h:mm:ss a" }}</p>
+    <button class="delete" aria-label="delete" ng-click= "delete(message.id)"></button>
   </div>
   <div class="message-body" >
     {{message.body}}

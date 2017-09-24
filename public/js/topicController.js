@@ -1,5 +1,6 @@
 angular.module('myApp')
-    .controller('topicController',['$scope','$route', 'Topics', 'Messages', function($scope, $route, Topics, Messages) {
+    .controller('topicController',['$scope','$route', 'Topics', 'Messages', 'Users', function($scope, $route, Topics, Messages,Users) {
+
        $scope.topics = [];
           Topics.getTopics()
           .then((topics) => {
@@ -8,87 +9,113 @@ angular.module('myApp')
 
       $scope.messages = [];
           Messages.getMessages()
-          .then((messages) => {
+            .then((messages) => {
             $scope.messages = messages;
       });
 
       $scope.topic = {
-        topicname:''
+          topicname:''
       };
 
-        $scope.message = {
-        body:''
+      $scope.message = {
+          body:''
       };
+
+      $scope.current = localStorage.getItem('user');
+
+      $scope.users = [];
+        Users.getUsers()
+          .then((users) => {
+            $scope.users = users;
+        });
+
+      $scope.user = {
+         username:''
+      };
+
+      $scope.time = function(time) {
+          // var timeStamp = Date.parse(time);
+          // timeStamp.toLocaleDateString();
+          console.log(time);
+      };
+
+      $scope.author_id = parseInt(localStorage.getItem('userId'));
 
       $scope.addMessage = function(){
-        var topic_id = parseInt(localStorage.getItem('topic_id'));
-        var author_id = parseInt(localStorage.getItem('userId'));
-        newMessage ={
-          body: $scope.message.body,
-          topic_id: topic_id,
-          author_id: author_id,
-        };
-        Messages.addMessage(newMessage)
-        .then(message => {
-          console.log('REGISTER',message);
-          $scope.message.body = '';
-        });
-        $route.reload();
+          var topic_id = parseInt(localStorage.getItem('topic_id'));
+          var author_id = parseInt(localStorage.getItem('userId'));
+          newMessage ={
+            body: $scope.message.body,
+            topic_id: topic_id,
+            author_id: author_id,
+            author_name: $scope.current,
+          };
+          Messages.addMessage(newMessage)
+          .then(message => {
+            $scope.message.body = '';
+          });
+          $route.reload();
       };
 
       $scope.nothing = [];
 
       $scope.filter = function() {
-        return $scope.messages.filter(message => {
+          return $scope.messages.filter(message => {
             var result = message.topic_id === topicID;
-            console.log(result);
-          $scope.messages = result;
-        });
+            $scope.messages = result;
+          });
       };
-
 
        $scope.bindThis = function(id, name) {
-        console.log(id);
-        localStorage.setItem('topic_name',name);
-        localStorage.setItem('topic_id',id);
-        $route.reload();
+          localStorage.setItem('topic_name',name);
+          localStorage.setItem('topic_id',id);
+          $route.reload();
       };
 
-     $scope.topicName = localStorage.getItem('topic_name');
-     $scope.topicID= parseInt(localStorage.getItem('topic_id'));
+      $scope.topicName = localStorage.getItem('topic_name');
+      $scope.topicID= parseInt(localStorage.getItem('topic_id'));
 
+      $scope.delete = function(id) {
+          Messages.deleteMessage(id)
+          .then(user => {
+             console.log('delete worked');
+          })
+          .catch(err => {
+             console.log(err);
+          });
+          $route.reload();
+      };
 
       $scope.addTopic = function(){
-        var creator = localStorage.getItem('user');
-        var creatorId = localStorage.getItem('userId');
-        console.log('CREATOR',creator);
-        newTopic ={
-          name: $scope.topic.topicname,
-          created_by:  creatorId
-        };
-        Topics.addTopic(newTopic)
-        .then(user => {
-          $scope.topic.topicname = '';
-        });
-        $route.reload();
+          var creator = localStorage.getItem('user');
+          var creatorId = parseInt(localStorage.getItem('userId'));
+          console.log('CREATOR',creator);
+          newTopic ={
+            name: $scope.topic.topicname,
+            created_by:  creatorId
+          };
+          Topics.addTopic(newTopic)
+          .then(user => {
+            $scope.topic.topicname = '';
+          });
+          $route.reload();
       };
-
-
-     $scope.current = localStorage.getItem('user');
 
      $scope.log = localStorage.getItem('log');
 
      $scope.logOff = function () {
-        localStorage.removeItem('log');
-        localStorage.setItem('log', 'false');
-        localStorage.removeItem('user');
-        $route.reload();
-        window.location.href = 'http://localhost:8000/';
+          localStorage.removeItem('log');
+          localStorage.setItem('log', 'false');
+          localStorage.removeItem('user');
+          $route.reload();
+          window.location.href = 'http://localhost:8000/';
       };
 
      $scope.logOn = function (){
-      localStorage.removeItem('log');
-      localStorage.setItem('log', 'true');
+          localStorage.removeItem('log');
+          localStorage.setItem('log', 'true');
      };
 
 }]);
+
+

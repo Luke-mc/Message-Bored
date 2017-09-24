@@ -10,17 +10,19 @@ angular.module('myApp')
             return messages.data;
           });
         },
-
-         addMessage: function(data) {
-          console.log('POST:',  data);
+        addMessage: function(data) {
           return  $http.post('/messages', data)
           .then((message) => {
-            console.log('POST 2:',message);
-            console.log('messageS:',message);
+            return message.data;
+          });
+        },
+        deleteMessage: function(id) {
+          console.log(`message/${id}`);
+          return  $http.delete(`/messages/${id}`)
+          .then((message) => {
             return message.data;
           });
         }
-
       };
     }];
 });

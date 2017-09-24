@@ -1,19 +1,3 @@
-// module.exports = function(sequelize, DataTypes) {
-//   var User = sequelize.define("User", {
-//     name: DataTypes.TEXT,
-//   }, {
-//     classMethods: {
-//       associate: function(models) {
-
-//       }
-//     }
-//   });
-
-//   return User;
-// };
-
-
-
 const sequelize = require("sequelize");
 const Topics = require("./Topics");
 const Messages = require("./Messages");

@@ -6,20 +6,22 @@ angular.module('myApp')
         .then((users) => {
           $scope.users = users;
       });
+
       $scope.user = {
         username:''
       };
+
       $scope.register = function(){
         newUser ={
           username: $scope.user.username
         };
         Users.addUser(newUser)
         .then(user => {
-          console.log('REGISTER',user);
           $scope.user.username = '';
         });
       };
 
+      console.log('USERSCONTROLLER:', Users.users);
 
 
       $scope.test = '';
