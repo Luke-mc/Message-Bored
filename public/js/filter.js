@@ -13,5 +13,13 @@ angular.module('myApp')
         return user.author_id === id;
       });
     };
+}])
+
+  .filter('title', [function() {
+    return function(topics, id) {
+      return topics.filter((topic) => {
+        return topic.id === id;
+      });
+    };
 }]);
 

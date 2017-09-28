@@ -5,74 +5,95 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Message Bored</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
     <base href="/">
   </head>
   <body ng-app="myApp">
-  <section class="section"  ng-controller="myController">
-  <section class="hero is-primary">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Message Bored
-      </h1>
-      <h2 class="subtitle" ng-if="current">
-        Logged In as {{current}}
-      </h2>
-    </div>
-  </div>
-</section>
-<nav class="breadcrumb is-centered">
-<div class= "container">
-  <div ng-switch="{{log}}">
-     <div ng-switch-when="true" ng-controller="topicController" >
-       <ul>
-         <li><a ng-href="/#">Home</a></li>
-         <li><a ng-click="logOff()">Log Off</a></li>
-         <li><a ng-href="/user">Users</a></li>
-         <li><a ng-href="/latest">Latest</a></li>
-       </ul>
-       <nav class="breadcrumb is-centered">
-         <ul>
-            <li ng-repeat="topic in topics">
-               <a ng-href ="/topic" ng-click= 'bindThis(topic.id,topic.name)'>{{topic.name}}</a>
-            </li>
-          </ul>
-        </nav>
-        <input class="input is-small" type="text" placeholder="New Topic" ng-model="topic.topicname">
-        <button ng-click="addTopic()" >Add Topic</button>
+    <section class="section"  ng-controller="myController">
+      <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title has-text-black has-text-weight-semibold">
+            Message Bored
+          </h1>
+          <h2 class="subtitle has-text-weight-light" ng-if="current" >
+            Logged In as <span class=" has-text-black">{{current}}</span>
+          </h2>
+        </div>
       </div>
-      <div ng-switch-default>
-        <ul>
-          <li><a ng-href="/#">Home</a></li>
-          <li><a ng-href="/login">Log On</a></li>
-          <li><a ng-href="/register">Register</a></li>
-          <li><a ng-href="/user">Users</a></li>
-          <li><a ng-href="/latest">Latest</a></li>
-        </ul>
+    </section>
+    <nav class="tabs is-centered is-clipped">
+    <div class= "container">
+      <div ng-switch="{{log}}">
+         <div ng-switch-when="true" ng-controller="topicController" >
+           <ul>
+             <li><a ng-href="/#">Home</a></li>
+             <li><a ng-click="logOff()">Log Off</a></li>
+             <li><a ng-href="/user">Users</a></li>
+             <li><a ng-href="/latest">Latest</a></li>
+           </ul>
+           <nav class="tabs is-centered is-clipped">
+             <ul>
+                <li ng-repeat="topic in topics">
+                   <a ng-href ="/topic" ng-click= 'bindThis(topic.id,topic.name)'>{{topic.name}}</a>
+                </li>
+              </ul>
+            </nav>
+            <input class="input is-small" type="text" placeholder="New Topic" ng-model="topic.topicname">
+            <button ng-click="addTopic()" >Add Topic</button>
+          </div>
+          <div ng-switch-default>
+            <ul>
+              <li ng-click="active(this.bind)"><a ng-href="/#">Home</a></li>
+              <li><a ng-href="/login">Log On</a></li>
+              <li><a ng-href="/register">Register</a></li>
+              <li><a ng-href="/user">Users</a></li>
+              <li><a ng-href="/latest">Latest</a></li>
+            </ul>
+           </div>
+          </div>
        </div>
-      </div>
-   </div>
- </nav>
+     </nav>
 
 
 
+  <!-- <nav class="level">
+    <p class="level-item has-text-centered">
+      <a class="link is-info">Home</a>
+    </p>
+    <p class="level-item has-text-centered">
+      <a class="link is-info">Menu</a>
+    </p>
+    <p class="level-item has-text-centered">
+      <img src="http://bulma.io/images/bulma-type.png" alt="" style="height: 30px;">
+    </p>
+    <p class="level-item has-text-centered">
+      <a class="link is-info">Reservations</a>
+    </p>
+    <p class="level-item has-text-centered">
+      <a class="link is-info">Contact</a>
+    </p>
+  </nav> -->
 
-   <ng-view></ng-view>
-  </section>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" type="text/javascript"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js" type="text/javascript"></script>
-  <script src="/js/myApp.js" type="text/javascript"></script>
-  <script src="./js/myController.js" type="text/javascript"></script>
-  <script src="./js/topicController.js" type="text/javascript"></script>
-  <script src="/js/usersControllers.js" type="text/javascript"></script>
-  <script src="/js/userService.js" type="text/javascript"></script>
-  <script src="/js/usersProvider.js" type="text/javascript"></script>
-  <script src="/js/topicsProvider.js" type="text/javascript"></script>
-  <script src="/js/messageProvider.js" type="text/javascript"></script>
+
+     <ng-view></ng-view>
+    </section>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js" type="text/javascript"></script>
+    <script src="/js/myApp.js" type="text/javascript"></script>
+    <script src="./js/myController.js" type="text/javascript"></script>
+    <script src="./js/topicController.js" type="text/javascript"></script>
+    <script src="/js/usersControllers.js" type="text/javascript"></script>
+    <script src="/js/userService.js" type="text/javascript"></script>
+    <script src="/js/usersProvider.js" type="text/javascript"></script>
+    <script src="/js/topicsProvider.js" type="text/javascript"></script>
+    <script src="/js/messageProvider.js" type="text/javascript"></script>
     <script src="/js/filter.js" type="text/javascript"></script>
-
   </body>
 </html>
 

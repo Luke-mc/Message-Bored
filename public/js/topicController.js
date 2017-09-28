@@ -5,13 +5,27 @@ angular.module('myApp')
           Topics.getTopics()
           .then((topics) => {
             $scope.topics = topics;
+            $scope.topicNumber = $scope.topics.length;
+            console.log($scope.topics.length);
        });
 
       $scope.messages = [];
           Messages.getMessages()
             .then((messages) => {
             $scope.messages = messages;
+            $scope.messageNumber = $scope.messages.length;
       });
+
+      $scope.users = [];
+      Users.getUsers()
+        .then((users) => {
+          $scope.users = users;
+          $scope.userNumber = $scope.users.length;
+      });
+
+      $scope.userNumber = null;
+      $scope.topicNumber = null;
+      $scope.messageNumber = null;
 
       $scope.topic = {
           topicname:''
@@ -23,20 +37,12 @@ angular.module('myApp')
 
       $scope.current = localStorage.getItem('user');
 
-      $scope.users = [];
-        Users.getUsers()
-          .then((users) => {
-            $scope.users = users;
-        });
-
       $scope.user = {
          username:''
       };
 
-      $scope.time = function(time) {
-          // var timeStamp = Date.parse(time);
-          // timeStamp.toLocaleDateString();
-          console.log(time);
+      $scope.active = function(binded) {
+        binded.class = "is-active" ;
       };
 
       $scope.author_id = parseInt(localStorage.getItem('userId'));
@@ -73,7 +79,7 @@ angular.module('myApp')
       };
 
       $scope.topicName = localStorage.getItem('topic_name');
-      $scope.topicID= parseInt(localStorage.getItem('topic_id'));
+      $scope.topicID = parseInt(localStorage.getItem('topic_id'));
 
       $scope.delete = function(id) {
           Messages.deleteMessage(id)

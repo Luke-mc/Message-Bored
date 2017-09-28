@@ -7,6 +7,13 @@ angular.module('myApp')
           $scope.users = users;
       });
 
+      $scope.fakeUsers = [];
+        Users.getUserApiInfo()
+        .then((users) => {
+          $scope.fakesUsers = users;
+          console.log('fakeuser',$scope.fakeUsers);
+      });
+
       $scope.user = {
         username:''
       };

@@ -9,8 +9,15 @@ angular.module('myApp')
           return $http.get('/users')
           .then((users) => {
 
-              this.users =  users.data;
-              console.log('PROV;',this.users);
+
+              return users.data;
+          });
+        },
+           getUserApiInfo: function() {
+          return $http.get('/api/users?page=2')
+          .then((users) => {
+
+              console.log('FAKE;',users.data);
               return users.data;
           });
         },
